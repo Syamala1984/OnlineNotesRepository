@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="angular.js"></script>
+<script src="script.js"></script>
+
+<style>
+label {
+	display: inline-block;
+	width: 120px;
+	vertical-align: middle;
+}
+
+input {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+input.ng-invalid {
+	border: solid red 2px;
+}
+
+form {
+	padding: 10px;
+}
+
+textarea {
+	width: 250px;
+	height: 160px;
+}
+</style>
+</head>
+
+<body ng-app="mainModule">
+	<div ng-app="headerApp"></div>
+	<div ng-app="menuApp"></div>
+	<div ng-app="notesBodyApp">
+		<div ng-app="folderApp">
+			<form name="" novalidate>
+				<ng-include src="MyHtml2.html"></ng-include>
+			</form>
+		</div>
+		<div ng-app="notesApp">
+			<ng-include src="MyHtml3.html"></ng-include>
+		</div>
+		<div ng-app="contentApp"></div>
+	</div>
+
+
+	<div ng-controller="mainController">
+		<form name="personForm" novalidate>
+			<label for="firstNameEdit">First name:</label> <input
+				id="firstNameEdit" type="text" name="firstName"
+				ng-model="person.firstName" required /><br /> <label
+				for="lastNameEdit">Last name:</label> <input id="lastNameEdit"
+				type="text" name="lastName" ng-model="person.lastName" required /><br />
+			<ng-include src=""></ng-include>
+		</form>
+		<br /> <strong><label for="userDebugText">Person:</label></strong><br />
+		<textarea id="userDebugText">{{person | json}}</textarea>
+		<br /> <br /> <strong>Form validity:</strong><br />
+		<ul>
+			<li><strong>personForm.$valid =</strong> {{personForm.$valid}}</li>
+
+		</ul>
+	</div>
+</body>
+</html>
